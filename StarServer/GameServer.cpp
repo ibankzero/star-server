@@ -27,4 +27,5 @@ void DestroyGameServer() {
 
 void ProcessRequest(Client_t *client, char *buffer, u32 buffer_size) {
     
+    SLOG("[INFO] ProcessRequest: client idx(%d), buffer size(%d)\n", client->idx, buffer_size);
 }
