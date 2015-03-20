@@ -1,5 +1,5 @@
-NoNameServer : main.o StarSocketServer.o GameServer.o GameDatabase.o
-	g++ -o NoNameServer main.o StarSocketServer.o GameServer.o GameDatabase.o -L/root/mysql/lib -lmysqlclient -lpthread
+GameServer : main.o StarSocketServer.o GameServer.o GameDatabase.o
+	g++ -o GameServer main.o StarSocketServer.o GameServer.o GameDatabase.o -L/root/mysql/lib -lmysqlclient -lpthread
 
 main.o : main.cpp GameServer.h StarSocketServer.h
 	g++ -c main.cpp -I/root/mysql/include/

@@ -26,19 +26,19 @@ int main(int argc, const char* argv[]) {
     
     int ret = STSV_Init();
     
-    InitGameServer();
+    if (ret == 0) InitGameServer();
     
     while (ret == 0) {
         if(kbhit()) {
             if(getch() == 'q') {
-                ret = -1;
+                ret = -2;
             }
         }
         usleep(1000);
     }
     STSV_Stop();
     
-    DestroyGameServer();
+    if (ret == -2) DestroyGameServer();
     
     return 0;
 }
