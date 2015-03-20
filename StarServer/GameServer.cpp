@@ -8,6 +8,8 @@
 
 #include "GameServer.h"
 
+// TEST
+
 void InitGameServer() {
     
     SLOG("[INFO] InitGameServer: server initialized");
