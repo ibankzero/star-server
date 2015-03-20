@@ -3300,3 +3300,36 @@ u32 STOS_CRC32(const void   *input,u32 dataLength){
     context = (u32) r;
     return context;
 }
+
+u32 STOS_GetTickCount() {
+#ifdef STAR_WINDOWS_VERSION
+    return GetTickCount();
+#else
+    static timeval tv;
+    u32 milli;
+    gettimeofday(&tv,NULL);
+    milli = ((tv.tv_sec) * 1000) + ((tv.tv_usec) / 1000);
+    return milli;
+#endif
+}
+
+long GetTimeMillisec() {
+    static timeval tv;
+    gettimeofday(&tv, NULL);
+    return (time(NULL) * 1000) + (tv.tv_usec / 1000);
+}
+
+unsigned char  getch() {
+    unsigned char x;
+    read(0, &x, 1);
+    return x;
+}
+int kbhit() {
+    struct timeval tv;
+    fd_set fd_read;
+    tv.tv_sec = 0;
+    tv.tv_usec = 0;
+    FD_SET(0, &fd_read);
+    select(1, &fd_read, 0, 0, &tv);
+    return FD_ISSET(0, &fd_read);
+}

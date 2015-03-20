@@ -11,10 +11,6 @@
 
 #include "StarSocketServer.h"
 #include "GameDatabase.h"
-#include "Utility.h"
-
-#define CODE                                s16
-#define ACT                                 s16
 
 void InitGameServer();
 void ClientConnect(Client_t *client);
