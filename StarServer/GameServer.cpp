@@ -272,9 +272,7 @@ static void ResetBigUser(BigUser* dest) {
     SetBigUser(dest, BIG_NO_USER, "", BIG_DEF_RANK, BIG_DEF_AVATAR, equips);
 }
 
-static void SetBigUserData(BigUserData *dest, BigUser *user, u16 rewardLevel, u16 rewardPoint, u32 gold, u32 win, u32 lose, u32 remainHourly, GameId gameId, RoomId roomId, SeatId seatId) {
-    memcpy(&dest->user, user, sizeof(BigUser));
-    
+static void SetBigUserData(BigUserData *dest, u16 rewardLevel, u16 rewardPoint, u32 gold, u32 win, u32 lose, u32 remainHourly, GameId gameId, RoomId roomId, SeatId seatId) {
     dest->rewardLevel   = rewardLevel;
     dest->rewardPoint   = rewardPoint;
     dest->gold          = gold;
@@ -286,9 +284,8 @@ static void SetBigUserData(BigUserData *dest, BigUser *user, u16 rewardLevel, u1
     dest->lastSeatId    = seatId;
 }
 static void ResetBigUserData(BigUserData *dest) {
-    BigUser user;
-    ResetBigUser(&user);
-    SetBigUserData(dest, &user, BIG_DEF_REWARD_LEVEL, BIG_DEF_REWARD_POINT, BIG_DEF_GOLD, BIG_DEF_WIN, BIG_DEF_LOSE, BIG_DEF_REMAIN_HOURLY, BIG_NO_GAME, BIG_NO_ROOM, BIG_NO_SEAT);
+    ResetBigUser(&dest->user);
+    SetBigUserData(dest, BIG_DEF_REWARD_LEVEL, BIG_DEF_REWARD_POINT, BIG_DEF_GOLD, BIG_DEF_WIN, BIG_DEF_LOSE, BIG_DEF_REMAIN_HOURLY, BIG_NO_GAME, BIG_NO_ROOM, BIG_NO_SEAT);
 }
 static void InitBigUserData() {
     bigUserData     = (BigUserData*)malloc(BIG_MAX_USER * sizeof(BigUserData));
@@ -297,8 +294,7 @@ static void InitBigUserData() {
     }
 }
 
-static void SetBigPlayer(BigPlayer *dest, BigUser *user, s8 online, s8 hand, s8 action, u32 chip, u32 bet) {
-    memcpy(&dest->user, user, sizeof(BigUser));
+static void SetBigPlayer(BigPlayer *dest, s8 online, s8 hand, s8 action, u32 chip, u32 bet) {
     dest->online    = online;
     dest->hand      = hand;
     dest->action    = action;
@@ -306,9 +302,8 @@ static void SetBigPlayer(BigPlayer *dest, BigUser *user, s8 online, s8 hand, s8 
     dest->bet       = bet;
 }
 static void ResetBigPlayer(BigPlayer *dest) {
-    BigUser user;
-    ResetBigUser(&user);
-    SetBigPlayer(dest, &user, BIG_OFFLINE, BIG_NO_CARD, BIG_DEF_ACTION, BIG_NO_CHIP, BIG_NO_BET);
+    ResetBigUser(&dest->user);
+    SetBigPlayer(dest, BIG_OFFLINE, BIG_NO_CARD, BIG_DEF_ACTION, BIG_NO_CHIP, BIG_NO_BET);
 }
 
 static void SetBigRoom(BigRoom *dest, GameId gameId, u32 tokenKey, u32 roomVersion, const char* roomname,
@@ -384,8 +379,7 @@ static void SetUserDataFromDB(BigUserData *dest, int dbIndex) {
         dbEquipments[atoi(STSV_DBGetRowStringValue(dbIndex, 8))]
     };
     
-    BigUser user;
-    SetBigUser(&user,
+    SetBigUser(&dest->user,
                atoi(STSV_DBGetRowStringValue(dbIndex, 0)),
                STSV_DBGetRowStringValue(dbIndex, 2),
                atoi(STSV_DBGetRowStringValue(dbIndex, 3)),
@@ -395,7 +389,7 @@ static void SetUserDataFromDB(BigUserData *dest, int dbIndex) {
     
     u32 remain = BIG_DEF_REMAIN_HOURLY - (GetTimeMillisec() - atol(STSV_DBGetRowStringValue(dbIndex, 14)));
     
-    SetBigUserData(dest, &user,
+    SetBigUserData(dest,
                    atoi(STSV_DBGetRowStringValue(dbIndex, 9)),
                    atoi(STSV_DBGetRowStringValue(dbIndex, 10)),
                    atoi(STSV_DBGetRowStringValue(dbIndex, 11)),
@@ -419,14 +413,19 @@ static void LoginRequestHandler(Client_t *client, BigLoginRequest *req) {
         "SELECT * FROM users WHERE uuid = '%s' LIMIT 1", req->uuid)) {
         if (STSV_DBNumRow(dbIndex) == 1) {
             STSV_DBFetchRow(dbIndex);
-            
             if (atoi(STSV_DBGetRowStringValue(dbIndex, 18)) == BIG_OFFLINE) {
                 SetUserDataFromDB(pUserData, dbIndex);
             }
             else {
-                
+                // add log
             }
         }
+        else {
+            // add log
+        }
+    }
+    else {
+        // add log
     }
     
     STSV_DBUnlockResource(dbIndex);
