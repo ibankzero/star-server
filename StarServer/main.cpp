@@ -8,15 +8,6 @@
 
 #include "GameServer.h"
 
-void ClientRequest(Client_t *client) {
-    int data_count = STSV_GetDataCount(client->idx);
-    u32 buffer_size;
-    for (int i = 0; i < data_count; i++) {
-        char* buffer = STSV_GetData(client->idx, i, &buffer_size);
-        ProcessRequest(client, buffer, buffer_size);
-    }
-}
-
 int main(int argc, const char* argv[]) {
     
     STSV_SetUnlimitServer(true);

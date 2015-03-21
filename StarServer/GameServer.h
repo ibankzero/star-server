@@ -10,10 +10,10 @@
 #define __NoNameGame__GameServer__
 
 #include "StarSocketServer.h"
-#include "GameDatabase.h"
 
 void InitGameServer();
 void ClientConnect(Client_t *client);
+void ClientRequest(Client_t *client);
 void ProcessRequest(Client_t *client, char *buffer, u32 buffer_size);
 void ClientDisconnect(Client_t *client);
 void DestroyGameServer();
