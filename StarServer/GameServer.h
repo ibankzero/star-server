@@ -11,7 +11,7 @@
 
 #include "StarSocketServer.h"
 
-void InitGameServer();
+s8 InitGameServer();
 void ClientConnect(Client_t *client);
 void ClientRequest(Client_t *client);
 void ClientDisconnect(Client_t *client);

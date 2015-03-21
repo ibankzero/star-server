@@ -165,9 +165,9 @@ Client_t                    *s_Client_t;
 SERVER_ROOM_DESC            *s_Room_t;
 
 
-void (*processMSGClientRequest)(Client_t *) = NULL;
-void (*processMSGClientDisconnect)(Client_t *) = NULL;
-void (*processMSGClientConnect)(Client_t *) = NULL;
+void (*processMSGClientRequest)(Client_t*) = NULL;
+void (*processMSGClientDisconnect)(Client_t*) = NULL;
+void (*processMSGClientConnect)(Client_t*) = NULL;
 
 /*---------------------------------------------------------------------------*
  Big Data Buffer
@@ -205,11 +205,11 @@ static bool     *sqlLock;//[STNET_MAX_DB_CONNECTION]; // For Control Connection 
 
 
 #endif
-static volatile s32      s_nCurDBConnect;
-char            s_szDBUser[16];
-char            s_szDBPass[16];
-char            s_szDBName[16];
-char            s_szIP[32];
+static volatile s32     s_nCurDBConnect;
+char                    s_szDBUser[16];
+char                    s_szDBPass[16];
+char                    s_szDBName[16];
+char                    s_szIP[32];
 
 #pragma mark -+Group Room use for PVP and other that Player play with Player+
 ///*---------------------------------------------------------------------------*

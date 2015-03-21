@@ -8,7 +8,7 @@
 
 #include "GameServer.h"
 
-int main(int argc, const char* argv[]) {
+int main(int argc, const char *argv[]) {
     
     STSV_SetUnlimitServer(true);
     STSV_SetClientRequestFunction(ClientRequest);
@@ -17,19 +17,20 @@ int main(int argc, const char* argv[]) {
     
     int ret = STSV_Init();
     
-    InitGameServer();
+    if (ret == 0) {
+        ret = InitGameServer();
+    }
     
     while (ret == 0) {
-        if(kbhit()) {
-            if(getch() == 'q') {
-                ret = -1;
-            }
-        }
+        if(kbhit()) if(getch() == 'q') ret = -2;
         usleep(1000);
     }
-    STSV_Stop();
     
-    DestroyGameServer();
+    if (ret == -2) {
+        DestroyGameServer();
+    }
+    
+    STSV_Stop();
     
     return 0;
 }
