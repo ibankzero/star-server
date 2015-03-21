@@ -17,8 +17,6 @@
 #ifndef _STAR_SERVER_H_
 #define _STAR_SERVER_H_
 
-
-
 #ifdef DEBUG_MODE
     #define SLOG(...) printf(__VA_ARGS__)
 #else
@@ -222,8 +220,7 @@ extern "C"
     
     typedef int SOCKET;
     
-    struct StarVersion
-    {
+    struct StarVersion {
         s32 major;		///< significant changes
         s32 minor;		///< incremental changes
         s32 revision;	///< bug fixes
@@ -240,7 +237,7 @@ extern "C"
     
     typedef int HOSTID;
     //system message
-    struct STAR_PACKET_HEADER{
+    struct STAR_PACKET_HEADER {
         u32 packNo;
         u32 packType;
         u32 packSize;
