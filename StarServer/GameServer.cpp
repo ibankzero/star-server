@@ -1,6 +1,6 @@
 //
 //  GameServer.cpp
-//  NoNameGame
+//  BiggestServer
 //
 //  Created by Zilo on 2/16/2558 BE.
 //  Copyright (c) 2558 THANAKARN LORLERTSAKUL. All rights reserved.
