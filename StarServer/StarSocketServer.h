@@ -406,6 +406,8 @@ extern "C"
     
 #endif
     
+    u32 STOS_GetTickCount();
+    long GetTimeMillisec();
     
     unsigned char  getch();
     int kbhit();

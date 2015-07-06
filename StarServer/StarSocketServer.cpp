@@ -103,8 +103,7 @@ typedef struct
 //}STSOCKMSGDATA_PACKDATASIZE;
 
 
-typedef struct
-{
+typedef struct {
     s16 type;
     s16 fromID;
     s32 packNo;
@@ -115,9 +114,9 @@ typedef struct
 /*---------------------------------------------------------------------------*
  Server Variable
  *---------------------------------------------------------------------------*/
-StarVersion     version={2,4,8};
-StarVersion     engineSupport={2,86,0};
-StarVersion     clientSupport={1,8,0};
+StarVersion     version = { 2, 4, 8 };
+StarVersion     engineSupport = { 2, 86, 0 };
+StarVersion     clientSupport = { 1, 8, 0 };
 
 static bool     s_bUnlimit = false;
 static bool     s_bDebugVersion;
@@ -136,10 +135,10 @@ static int      s_nMaxStackSize;
 static int      s_nMaxFile;
 
 
-static char		logFileName[128];
-static char     startServerTime[64];
-static volatile u32      s_nCurLoginCount;
-static volatile u32      s_nServerType;
+static char             logFileName[128];
+static char             startServerTime[64];
+static volatile u32     s_nCurLoginCount;
+static volatile u32     s_nServerType;
 
 static bool     s_bWriteLog = false;
 static size_t   s_EstimateRam;
@@ -148,11 +147,11 @@ static size_t   s_EstimateRam;
  *---------------------------------------------------------------------------*/
 static pthread_mutex_t  s_MutexFreeRoomIdx = PTHREAD_MUTEX_INITIALIZER;
 
-struct SERVER_ROOM_DESC{
-    s32 numClient;
-    char  roomName[32];
-    pthread_mutex_t  mutexRoom;// = PTHREAD_MUTEX_INITIALIZER;
-    Client_t *joinRoom[STSV_MAX_PLAYER_PER_ROOM];
+struct SERVER_ROOM_DESC {
+    s32             numClient;
+    char            roomName[32];
+    pthread_mutex_t mutexRoom;// = PTHREAD_MUTEX_INITIALIZER;
+    Client_t*       joinRoom[STSV_MAX_PLAYER_PER_ROOM];
 };
 
 struct SERVERDESC {
@@ -161,18 +160,18 @@ struct SERVERDESC {
 };
 pthread_t                   s_AcceptConnectThreadID;
 SERVERDESC                  s_ServerDesc;
-Client_t                    *s_Client_t;
-SERVER_ROOM_DESC            *s_Room_t;
+Client_t*                   s_Client_t;
+SERVER_ROOM_DESC*           s_Room_t;
 
 
-void (*processMSGClientRequest)(Client_t *) = NULL;
-void (*processMSGClientDisconnect)(Client_t *) = NULL;
-void (*processMSGClientConnect)(Client_t *) = NULL;
+void (*processMSGClientRequest)(Client_t*) = NULL;
+void (*processMSGClientDisconnect)(Client_t*) = NULL;
+void (*processMSGClientConnect)(Client_t*) = NULL;
 
 /*---------------------------------------------------------------------------*
  Big Data Buffer
  *---------------------------------------------------------------------------*/
-struct SERVER_BIG_DATA_BUFFER{
+struct SERVER_BIG_DATA_BUFFER {
     char*     buffer;
 };
 static SERVER_BIG_DATA_BUFFER   s_BigDataBuffer[STSV_BIGDATA_POOL_BLOCK];
@@ -184,8 +183,8 @@ static bool                     s_bBigDataLock;
 /*---------------------------------------------------------------------------*
  Database Variable
  *---------------------------------------------------------------------------*/
-struct SQLBuffer{
-    char *buffer;
+struct SQLBuffer {
+    char* buffer;
 };
 
 static MYSQL            *mMySql;//[STNET_MAX_DB_CONNECTION];
@@ -205,11 +204,11 @@ static bool     *sqlLock;//[STNET_MAX_DB_CONNECTION]; // For Control Connection 
 
 
 #endif
-static volatile s32      s_nCurDBConnect;
-char            s_szDBUser[16];
-char            s_szDBPass[16];
-char            s_szDBName[16];
-char            s_szIP[32];
+static volatile s32     s_nCurDBConnect;
+char                    s_szDBUser[16];
+char                    s_szDBPass[16];
+char                    s_szDBName[16];
+char                    s_szIP[32];
 
 #pragma mark -+Group Room use for PVP and other that Player play with Player+
 ///*---------------------------------------------------------------------------*
@@ -269,15 +268,15 @@ int CreateUDPServer(SOCKET listen);
 int GiveLocalIdTCP();
 
 
-void *STSV_PollAcceptFunc(void  *ptr); // for TCP/TP
-void *STSV_KoockAcceptFunc(void *ptr); // for UDP
+void *STSV_PollAcceptFunc(void* ptr); // for TCP/TP
+void *STSV_KoockAcceptFunc(void* ptr); // for UDP
 /*
 void *STSV_ClientThreadFuncx(void *ptr);
 */
-void *STSV_ClientThreadFuncAlway(void *ptr);
+void *STSV_ClientThreadFuncAlway(void* ptr);
 
-void STSV_TempClientConnectFunc(Client_t *ct);
-void STSV_TempClientRequestFunc(Client_t *);
+void STSV_TempClientConnectFunc(Client_t* ct);
+void STSV_TempClientRequestFunc(Client_t*);
 
 bool CheckLimite();
 
@@ -286,13 +285,13 @@ void AcceptConnectionUDP(void);
 
 int  FindFreeIdxHost();
 int  DestroySocket(int sock);
-int  DestroyClientRoom(Client_t *);
+int  DestroyClientRoom(Client_t*);
 
-int  Read(int id,char *buff,size_t count);
-int  ReadFrom(SOCKET sock,char *buf,size_t count,struct sockaddr *sockAddr,socklen_t *sockLen,bool NonBlocking);
+int  Read(int id,char* buff,size_t count);
+int  ReadFrom(SOCKET sock,char* buf,size_t count,struct sockaddr* sockAddr,socklen_t* sockLen,bool NonBlocking);
 //int Write(int id,char *buff,size_t count);
-int  WriteTo(SOCKET sock,char* buf,size_t count,struct sockaddr *sockAddr,socklen_t sockLen);
-void WriteAll(char *buff,size_t count);
+int  WriteTo(SOCKET sock,char* buf,size_t count,struct sockaddr* sockAddr,socklen_t sockLen);
+void WriteAll(char* buff,size_t count);
 
 /*---------------------------------------------------------------------------*
  Big Data Allocate
@@ -306,8 +305,8 @@ void FreeBigDataBuffer(int idx);
  *---------------------------------------------------------------------------*/
 void SendReTrasmit(int idx);
 int  processMessageBuffer(Client_t* client);
-void StartPackSendData(Client_t *client);
-void EndPackSendData(Client_t *client);
+void StartPackSendData(Client_t* client);
+void EndPackSendData(Client_t* client);
 /*---------------------------------------------------------------------------*
  Database Function Interface
  *---------------------------------------------------------------------------*/

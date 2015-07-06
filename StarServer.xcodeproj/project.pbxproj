@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		3322AF421A979751009AF266 /* libmysqlclient.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3322AF411A979751009AF266 /* libmysqlclient.a */; };
-		33E255711AB75E39002C2EB4 /* GameDatabase.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 33E2556F1AB75E39002C2EB4 /* GameDatabase.cpp */; };
 		33F1366D1A918FB6009EBCAF /* GameServer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 33F1366B1A918FB6009EBCAF /* GameServer.cpp */; };
 		953BCDD5182A11AF00E9645B /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 953BCDD4182A11AF00E9645B /* main.cpp */; };
 		953BCDDF182A125600E9645B /* StarSocketServer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 953BCDDD182A125600E9645B /* StarSocketServer.cpp */; };
@@ -28,8 +27,6 @@
 
 /* Begin PBXFileReference section */
 		3322AF411A979751009AF266 /* libmysqlclient.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libmysqlclient.a; path = MySQL/lib/libmysqlclient.a; sourceTree = "<group>"; };
-		33E2556F1AB75E39002C2EB4 /* GameDatabase.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = GameDatabase.cpp; path = StarServer/GameDatabase.cpp; sourceTree = "<group>"; };
-		33E255701AB75E39002C2EB4 /* GameDatabase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GameDatabase.h; path = StarServer/GameDatabase.h; sourceTree = "<group>"; };
 		33F1366B1A918FB6009EBCAF /* GameServer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = GameServer.cpp; path = StarServer/GameServer.cpp; sourceTree = "<group>"; };
 		33F1366C1A918FB6009EBCAF /* GameServer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GameServer.h; path = StarServer/GameServer.h; sourceTree = "<group>"; };
 		953BCDD0182A11AF00E9645B /* StarServer */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = StarServer; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -55,8 +52,6 @@
 			children = (
 				33F1366B1A918FB6009EBCAF /* GameServer.cpp */,
 				33F1366C1A918FB6009EBCAF /* GameServer.h */,
-				33E2556F1AB75E39002C2EB4 /* GameDatabase.cpp */,
-				33E255701AB75E39002C2EB4 /* GameDatabase.h */,
 			);
 			name = CoreGame;
 			sourceTree = "<group>";
@@ -144,7 +139,6 @@
 			files = (
 				33F1366D1A918FB6009EBCAF /* GameServer.cpp in Sources */,
 				953BCDD5182A11AF00E9645B /* main.cpp in Sources */,
-				33E255711AB75E39002C2EB4 /* GameDatabase.cpp in Sources */,
 				953BCDDF182A125600E9645B /* StarSocketServer.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
